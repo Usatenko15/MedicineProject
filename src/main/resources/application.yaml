@@ -1,0 +1,13 @@
+spring:
+  main:
+    allow-circular-references: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/medicine1
+    username: postgres
+    password: 123
+  flyway:
+    baseline-on-migrate: true

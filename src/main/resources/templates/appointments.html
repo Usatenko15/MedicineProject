@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments List</title>
+</head>
+<body>
+<div th:insert="~{fragments/menu :: #nav-menu}"></div>
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>Created</td>
+        <td>Doctor Name</td>
+        <td>Client Name</td>
+    </tr>
+    <tr th:each="appointment : ${appointments}">
+        <td th:text="${appointment.id}">Testname</td>
+        <td th:text="${appointment.created}">Testmail</td>
+        <td th:text="${appointment.doctorName}">doctorName</td>
+        <td th:text="${appointment.clientName}">doctorName</td>
+    </tr>
+</table>
+<a th:href="@{/appointments/new}">Add new</a>
+</body>
+</html>

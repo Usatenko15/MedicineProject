@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Create appointment</title>
+</head>
+<body>
+<div th:insert="~{fragments/menu :: #nav-menu}"></div>
+<form th:action="@{/appointments/new}" th:object="${appointmentDTO}" method="post">
+<!--    <select class="form-control" id="dropDownList">-->
+<!--        <option value="0">Doctors</option>-->
+<!--        <option th:each="doctor : ${doctors}" th:value="${doctor}" th:text="${doctor.name}"></option>-->
+<!--    </select>-->
+  <table border="1">
+<!--    <tr>-->
+<!--      <td>Id</td>-->
+<!--      <td><input type="text" th:field="*{id}"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>Password</td>-->
+<!--      <td><input type="password" th:field="*{password}"></td>-->
+<!--    </tr>-->
+<!--      <tr>-->
+<!--          <td>Doctor Name</td>-->
+<!--          <td><input type="text" th:field="*{doctorName}"></td>-->
+<!--      </tr>-->
+      <tr>
+          <td>Doctor Name</td>
+          <td>
+              <select th:field="*{doctorName}">
+<!--                  <option value="0">Doctors</option>-->
+                  <option th:each="doctor : ${doctors}" th:value="${doctor.name}" th:text="${doctor.name}"></option>
+              </select>
+          </td>
+      </tr>
+<!--    <tr>-->
+<!--      <td>Client Name</td>-->
+<!--      <td><input type="text" th:field="*{clientName}"></td>-->
+<!--    </tr>-->
+  </table>
+  <button type="submit">Save</button>
+</form>
+</body>
+</html>
