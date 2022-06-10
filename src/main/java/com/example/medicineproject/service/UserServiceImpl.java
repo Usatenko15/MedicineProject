@@ -2,7 +2,6 @@ package com.example.medicineproject.service;
 
 import com.example.medicineproject.domain.Role;
 import com.example.medicineproject.domain.User;
-import com.example.medicineproject.dto.UserDTO.UserDTO;
 import com.example.medicineproject.dto.UserDTO.UserGetDTO;
 import com.example.medicineproject.dto.UserDTO.UserPostDTO;
 import com.example.medicineproject.mapper.AppointmentMapper;
@@ -49,20 +48,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByName(String name) {
-        return userRepository.findFirstByName(name);
+        return userRepository.findFirstByName(name).orElseThrow(RuntimeException:: new);
     }
 
     @Override
     public List<User> findByRole(Role role) {
-        return userRepository.findByRole(role);
+        return userRepository.findByRole(role).orElseThrow(RuntimeException:: new);
     }
 
     @Override
     public void updateProfile(UserPostDTO userdto) {
-        User savedUser = userRepository.findFirstByName(userdto.getUsername());
-        if (savedUser == null) {
-            throw new RuntimeException("User not found b name" + userdto.getUsername());
-        }
+        User savedUser = userRepository.findFirstByName(userdto.getUsername()).orElseThrow(RuntimeException:: new);
+//        if (savedUser.isPresent()) {
+//            throw new RuntimeException("User not found b name" + userdto.getUsername());
+//        }
 
         boolean isChanged = false;
         if (userdto.getPassword() != null && !userdto.getPassword().isEmpty()) {
@@ -83,7 +82,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findFirstByName(username);
+        User user = userRepository.findFirstByName(username).orElseThrow(RuntimeException:: new);
         if(user == null) {
             throw new UsernameNotFoundException("nima");
         }

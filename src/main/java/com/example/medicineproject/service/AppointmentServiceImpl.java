@@ -33,7 +33,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentClientName = authentication.getName();
         User client = userService.findByName(currentClientName);
-        return appointmentRepository.findByClientId(client.getId()).stream()
+        return appointmentRepository.findByClientId(client.getId()).orElseThrow(RuntimeException::new).stream()
                 .map(appointmentMapper::fromAppointment).collect(Collectors.toList());
     }
 

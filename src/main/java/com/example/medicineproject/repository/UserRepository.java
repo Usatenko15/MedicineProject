@@ -5,9 +5,10 @@ import com.example.medicineproject.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findFirstByName(String name);
+    Optional<User> findFirstByName(String name);
 
-    List<User> findByRole(Role role);
+    Optional<List<User>> findByRole(Role role);
 }

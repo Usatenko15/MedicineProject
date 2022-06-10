@@ -1,0 +1,15 @@
+spring:
+  main:
+    allow-circular-references: true
+  datasource:
+    url: jdbc:h2:mem:meddicine1_test; DB_CLOSE_DELAY=-1
+    username: sa
+    password: pass
+    driverClassName: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+  flyway:
+    enabled: false

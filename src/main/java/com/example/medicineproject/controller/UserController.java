@@ -56,7 +56,11 @@ public class UserController {
         }
         User user = userService.findByName(principal.getName());
 
-        UserGetDTO dto = appointmentMapper.fromUser(user);
+        UserPostDTO dto = new UserPostDTO();
+        dto.setUsername(user.getName());
+        dto.setPassword(user.getPassword());
+        dto.setMatchingPassword(user.getPassword());
+        dto.setEmail(user.getEmail());
         model.addAttribute("user", dto);
         return "profile";
     }
@@ -73,6 +77,6 @@ public class UserController {
             return "profile";
         }
         userService.updateProfile(dto);
-        return "profile";
+        return "redirect:/";
     }
 }
