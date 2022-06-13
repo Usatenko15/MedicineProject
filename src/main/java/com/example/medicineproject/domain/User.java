@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -14,6 +16,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "users")
+@Document
 public class User {
     private static final String SEQ_NAME = "user_seq";
 
@@ -25,10 +28,13 @@ public class User {
     private String password;
     private String email;
     private boolean archive = false;
+    @Column(name = "isenable", columnDefinition = "boolean default true")
+    private boolean isEnable = true;
+    @Column(name = "blocktime")
+    private LocalDateTime blockTime;
     @Enumerated(EnumType.STRING)
     private Role role = Role.CLIENT;
     @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private List<Appointment> appointment;
-
 }

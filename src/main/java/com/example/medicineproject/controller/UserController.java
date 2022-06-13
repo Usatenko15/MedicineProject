@@ -33,6 +33,12 @@ public class UserController {
         return "userList";
     }
 
+    @GetMapping("/blocked")
+    public String userListBlocked(Model model) {
+        model.addAttribute("users", userService.getAllBlocked());
+        return "userList";
+    }
+
     @GetMapping("/new")
     public String newUser(Model model) {
         model.addAttribute("user", new UserPostDTO());

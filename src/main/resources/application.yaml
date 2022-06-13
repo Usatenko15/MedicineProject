@@ -1,6 +1,9 @@
 spring:
   main:
     allow-circular-references: true
+  data:
+    mongodb:
+      database: medicine123
   jpa:
     hibernate:
       ddl-auto: validate

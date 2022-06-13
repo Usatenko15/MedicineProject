@@ -26,6 +26,8 @@ create table users
 (
     id       int8    not null,
     archive  boolean not null,
+    isEnable  boolean,
+    blockTime timestamp,
     email    varchar(255),
     name     varchar(255),
     password varchar(255),

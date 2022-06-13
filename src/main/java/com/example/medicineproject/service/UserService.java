@@ -15,4 +15,5 @@ public interface UserService extends UserDetailsService {
     User findByName(String name);
     List<User> findByRole(Role role);
     void updateProfile(UserPostDTO userdto);
+    List<UserGetDTO> getAllBlocked();
 }
